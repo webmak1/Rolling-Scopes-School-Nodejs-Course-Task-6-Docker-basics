@@ -9,7 +9,7 @@ const getAll = (): IBoard[] => {
   if (res) {
     return res;
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // GET BY ID

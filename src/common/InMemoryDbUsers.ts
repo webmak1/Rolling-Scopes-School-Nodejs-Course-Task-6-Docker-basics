@@ -8,28 +8,28 @@ const UsersData: IUser[] = [];
 
 const getAllUsers = (): IUser[] => {
   const res = UsersData.slice(0);
-  if (res) {
-    return res;
+  if (!res) {
+    throw new Error('[App] Null Pointer Exception!');
   }
-  throw '[App] Null Pointer Exception!';
+  return res;
 };
 
 const getUser = (userId: string): IUser => {
   const allUsers = getAllUsers();
   const res = allUsers.filter((el) => el?.id === userId)[0];
-  if (res) {
-    return res;
+  if (!res) {
+    throw new Error('[App] Null Pointer Exception!');
   }
-  throw '[App] Null Pointer Exception!';
+  return res;
 };
 
 const createUser = (user: IUser): IUser => {
   UsersData.push(user);
   const res = getUser(user.id);
-  if (res) {
-    return res;
+  if (!res) {
+    throw new Error('[App] Null Pointer Exception!');
   }
-  throw '[App] Null Pointer Exception!';
+  return res;
 };
 
 const removeUser = (userId: string): IUser => {
@@ -37,10 +37,10 @@ const removeUser = (userId: string): IUser => {
   remove(UsersData, (user) => user.id === userId);
   DBTasks.deleteUserFromTasks(userId);
   const res = deletedUser;
-  if (res) {
-    return res;
+  if (!res) {
+    throw new Error('[App] Null Pointer Exception!');
   }
-  throw '[App] Null Pointer Exception!';
+  return res;
 };
 
 const updateUser = (newUserData: IUser): IUser => {
@@ -48,9 +48,9 @@ const updateUser = (newUserData: IUser): IUser => {
   createUser(newUserData);
   const res = getUser(newUserData.id);
   if (res) {
-    return res;
+    throw new Error('[App] Null Pointer Exception!');
   }
-  throw '[App] Null Pointer Exception!';
+  return res;
 };
 
 export const DBUsers = {

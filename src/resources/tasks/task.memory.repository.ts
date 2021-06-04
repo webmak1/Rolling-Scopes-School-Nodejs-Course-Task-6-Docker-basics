@@ -9,7 +9,7 @@ const getAll = (): ITask[] => {
   if (res) {
     return res;
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // GET TASK BY ID
@@ -44,7 +44,7 @@ const create = (
   if (res) {
     return res;
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // UPDATE TASK
@@ -73,7 +73,7 @@ const update = (
   if (res) {
     return res;
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // REMOVE TASK
@@ -82,7 +82,7 @@ const update = (
 //   if (res) {
 //     return res;
 //   }
-//   throw '[App] Null Pointer Exception!';
+//   throw new Error('[App] Null Pointer Exception!');
 // };
 
 // REMOVE TASK
@@ -91,7 +91,7 @@ const remove = async (id: string): Promise<ITask> => {
   if (res) {
     return res;
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 export const tasksRepo = {

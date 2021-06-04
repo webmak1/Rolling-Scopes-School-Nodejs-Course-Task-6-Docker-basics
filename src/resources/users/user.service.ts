@@ -21,7 +21,7 @@ const create = (login: string, password: string, name: string): IUserOutput => {
   if (createdUser) {
     return User.toResponse(createdUser);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // UPDATE USER
@@ -35,7 +35,7 @@ const update = (
   if (updatedUser) {
     return User.toResponse(updatedUser);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // DELETE USER
@@ -44,7 +44,7 @@ const remove = (userId: string): IUserOutput => {
   if (user) {
     return User.toResponse(user);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 export const usersService = {

@@ -36,7 +36,7 @@ const create = (
   if (createdTask) {
     return Task.toResponse(createdTask);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // UPDATE TASK
@@ -62,7 +62,7 @@ const update = (
   if (updatedTask) {
     return Task.toResponse(updatedTask);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // DELETE TASK
@@ -71,7 +71,7 @@ const update = (
 //   if (task) {
 //     return Task.toResponse(task);
 //   }
-//   throw '[App] Null Pointer Exception!';
+//   throw new Error('[App] Null Pointer Exception!');
 // };
 
 // DELETE TASK
@@ -80,7 +80,7 @@ const remove = async (deletionId: string): Promise<ITask> => {
   if (task) {
     return Task.toResponse(task);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 export const tasksService = {

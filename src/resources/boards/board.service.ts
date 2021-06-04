@@ -21,7 +21,7 @@ const create = (title: string, columns: string): IBoard => {
   if (board) {
     return Board.toResponse(board);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // UPDATE BOARD
@@ -30,7 +30,7 @@ const update = (boardId: string, title: string, columns: string): IBoard => {
   if (board) {
     return Board.toResponse(board);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 // DELETE BOARD
@@ -39,7 +39,7 @@ const remove = (boardId: string): IBoard => {
   if (board) {
     return Board.toResponse(board);
   }
-  throw '[App] Null Pointer Exception!';
+  throw new Error('[App] Null Pointer Exception!');
 };
 
 export const boardsService = {
