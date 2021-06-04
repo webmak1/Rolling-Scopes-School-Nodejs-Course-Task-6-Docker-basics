@@ -1,1 +1,1 @@
-export const DELAY = 100;
+export const DELAY = 60;

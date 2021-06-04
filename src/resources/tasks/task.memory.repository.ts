@@ -4,8 +4,8 @@ import { DBTasks } from 'common/InMemoryDbTasks';
 import { ITask, Task } from 'resources/tasks/task.model';
 
 // GET ALL TASKS
-const getAll = (): ITask[] => {
-  const res = DBTasks.getAllTasks();
+const getAll = async (): Promise<ITask[]> => {
+  const res = await DBTasks.getAllTasks();
   if (res) {
     return res;
   }
@@ -13,8 +13,8 @@ const getAll = (): ITask[] => {
 };
 
 // GET TASK BY ID
-const get = (boardId: string, taskId: string): ITask => {
-  const task = DBTasks.getTask(boardId, taskId);
+const get = async (boardId: string, taskId: string): Promise<ITask> => {
+  const task = await DBTasks.getTask(boardId, taskId);
   if (!task) {
     throw new Error(`[App Error] The task with id: ${taskId} was not found!`);
   }
@@ -22,14 +22,14 @@ const get = (boardId: string, taskId: string): ITask => {
 };
 
 // CREATE TASK
-const create = (
+const create = async (
   boardId: string,
   title: string,
   order: string,
   description: string,
   userId: string,
   columnId: string
-): ITask => {
+): Promise<ITask> => {
   const newTask = new Task({
     id: undefined,
     boardId,
@@ -40,7 +40,7 @@ const create = (
     columnId,
   });
 
-  const res = DBTasks.createTask(newTask);
+  const res = await DBTasks.createTask(newTask);
   if (res) {
     return res;
   }
@@ -48,7 +48,7 @@ const create = (
 };
 
 // UPDATE TASK
-const update = (
+const update = async (
   boardId: string,
   taskId: string,
   title: string,
@@ -56,7 +56,7 @@ const update = (
   description: string,
   userId: string,
   columnId: string
-): ITask => {
+): Promise<ITask> => {
   const updateTask = new Task({
     id: taskId,
     boardId,
@@ -69,7 +69,7 @@ const update = (
 
   DBTasks.updateTask(updateTask);
 
-  const res = DBTasks.getTask(updateTask.boardId, updateTask.id);
+  const res = await DBTasks.getTask(updateTask.boardId, updateTask.id);
   if (res) {
     return res;
   }
@@ -77,8 +77,8 @@ const update = (
 };
 
 // REMOVE TASK
-const remove = (id: string): ITask => {
-  const res = DBTasks.removeTask(id);
+const remove = async (id: string): Promise<ITask> => {
+  const res = await DBTasks.removeTask(id);
   if (res) {
     return res;
   }
