@@ -50,8 +50,7 @@ const update = async (
     password,
     name,
   });
-  DBUsers.updateUser(newUserData);
-
+  await DBUsers.updateUser(newUserData);
   const user = await DBUsers.getUser(newUserData.id);
   if (!user) {
     throw new Error(`[App Error] The user with id: ${userId} was not found!`);

@@ -4,20 +4,20 @@ import { boardsRepo } from 'resources/boards/board.memory.repository';
 import { Board, IBoard } from 'resources/boards/board.model';
 
 // GET ALL BOARDS
-const getAll = (): IBoard[] => {
-  const boards = boardsRepo.getAll();
+const getAll = async (): Promise<IBoard[]> => {
+  const boards = await boardsRepo.getAll();
   return boards.map(Board.toResponse);
 };
 
 // GET BOARD
-const get = (boardId: string): IBoard => {
-  const board = boardsRepo.get(boardId);
+const get = async (boardId: string): Promise<IBoard> => {
+  const board = await boardsRepo.get(boardId);
   return Board.toResponse(board);
 };
 
 // CREATE BOARD
-const create = (title: string, columns: string): IBoard => {
-  const board = boardsRepo.create(title, columns);
+const create = async (title: string, columns: string): Promise<IBoard> => {
+  const board = await boardsRepo.create(title, columns);
   if (board) {
     return Board.toResponse(board);
   }
@@ -25,8 +25,12 @@ const create = (title: string, columns: string): IBoard => {
 };
 
 // UPDATE BOARD
-const update = (boardId: string, title: string, columns: string): IBoard => {
-  const board = boardsRepo.update(boardId, title, columns);
+const update = async (
+  boardId: string,
+  title: string,
+  columns: string
+): Promise<IBoard> => {
+  const board = await boardsRepo.update(boardId, title, columns);
   if (board) {
     return Board.toResponse(board);
   }
@@ -34,8 +38,8 @@ const update = (boardId: string, title: string, columns: string): IBoard => {
 };
 
 // DELETE BOARD
-const remove = (boardId: string): IBoard => {
-  const board = boardsRepo.remove(boardId);
+const remove = async (boardId: string): Promise<IBoard> => {
+  const board = await boardsRepo.remove(boardId);
   if (board) {
     return Board.toResponse(board);
   }

@@ -14,20 +14,20 @@ export interface IUserReqBody {
 }
 
 // GET ALL
-router.route('/').get((_req: Request, res: Response) => {
+router.route('/').get(async (_req: Request, res: Response) => {
   try {
-    return res.json(usersService.getAll());
+    return res.json(await usersService.getAll());
   } catch (err) {
     return res.status(StatusCodes.NOT_FOUND).send('Something bad happened!');
   }
 });
 
 // GET USER BY ID
-router.route('/:id').get((req: Request, res: Response) => {
+router.route('/:id').get(async (req: Request, res: Response) => {
   try {
     const { id: userId } = req.params;
     if (userId) {
-      return res.json(usersService.get(userId));
+      return res.json(await usersService.get(userId));
     }
     return res.status(StatusCodes.BAD_REQUEST).send('[App] invalid req params');
   } catch (err) {
@@ -36,25 +36,25 @@ router.route('/:id').get((req: Request, res: Response) => {
 });
 
 // CREATE USER
-router.route('/').post((req: Request, res: Response) => {
+router.route('/').post(async (req: Request, res: Response) => {
   try {
     const { login, password, name } = req.body as IUserReqBody;
     return res
       .status(StatusCodes.CREATED)
-      .json(usersService.create(login, password, name));
+      .json(await usersService.create(login, password, name));
   } catch (err) {
     return res.status(StatusCodes.NOT_FOUND).send('Something bad happened!');
   }
 });
 
 // UPDATE USER
-router.route('/:id').put((req: Request, res: Response) => {
+router.route('/:id').put(async (req: Request, res: Response) => {
   try {
     const { id: userId } = req.params;
     const { login, password, name } = req.body as IUserReqBody;
 
     if (userId) {
-      return res.json(usersService.update(userId, login, password, name));
+      return res.json(await usersService.update(userId, login, password, name));
     }
     return res.status(StatusCodes.BAD_REQUEST).send('[App] invalid req params');
   } catch (err) {
@@ -63,11 +63,11 @@ router.route('/:id').put((req: Request, res: Response) => {
 });
 
 // DELETE USER
-router.route('/:id').delete((req: Request, res: Response) => {
+router.route('/:id').delete(async (req: Request, res: Response) => {
   try {
     const { id: userId } = req.params;
     if (userId) {
-      return res.json(usersService.remove(userId));
+      return res.json(await usersService.remove(userId));
     }
     return res.status(StatusCodes.BAD_REQUEST).send('[App] invalid req params');
   } catch (err) {
