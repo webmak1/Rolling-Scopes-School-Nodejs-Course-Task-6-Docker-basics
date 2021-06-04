@@ -1,26 +1,13 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "target": "esnext",
     "module": "commonjs",
     "baseUrl": "./src",
     "rootDir": "./src",
     "outDir": "./build",
     "allowJs": false,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "downlevelIteration": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "forceConsistentCasingInFileNames": true
+    "moduleResolution": "node"
   },
   "exclude": ["node_modules/"],
   "include": ["./src/**/*.ts"]

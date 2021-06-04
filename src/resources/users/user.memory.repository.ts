@@ -4,8 +4,8 @@ import { DBUsers } from 'common/InMemoryDbUsers';
 import { IUser, User } from 'resources/users/user.model';
 
 // GET ALL USERS
-const getAll = (): IUser[] => {
-  const res = DBUsers.getAllUsers();
+const getAll = async (): Promise<IUser[]> => {
+  const res = await DBUsers.getAllUsers();
   if (res) {
     return res;
   }
@@ -13,8 +13,8 @@ const getAll = (): IUser[] => {
 };
 
 // GET USER BY ID
-const get = (userId: string): IUser => {
-  const user = DBUsers.getUser(userId);
+const get = async (userId: string): Promise<IUser> => {
+  const user = await DBUsers.getUser(userId);
   if (!user) {
     throw new Error(`[App Error] The user with id: ${userId} was not found!`);
   }
@@ -22,24 +22,28 @@ const get = (userId: string): IUser => {
 };
 
 // CREATE USER
-const create = (login: string, password: string, name: string): IUser => {
+const create = async (
+  login: string,
+  password: string,
+  name: string
+): Promise<IUser> => {
   const user = new User({
     id: undefined,
     login,
     password,
     name,
   });
-  DBUsers.createUser(user);
+  await DBUsers.createUser(user);
   return DBUsers.getUser(user.id);
 };
 
 // UPDATE USER
-const update = (
+const update = async (
   userId: string,
   login: string,
   password: string,
   name: string
-): IUser => {
+): Promise<IUser> => {
   const newUserData = new User({
     id: userId,
     login,
@@ -48,7 +52,7 @@ const update = (
   });
   DBUsers.updateUser(newUserData);
 
-  const user = DBUsers.getUser(newUserData.id);
+  const user = await DBUsers.getUser(newUserData.id);
   if (!user) {
     throw new Error(`[App Error] The user with id: ${userId} was not found!`);
   }
@@ -56,7 +60,8 @@ const update = (
 };
 
 // DELETE USER
-const remove = (userId: string): IUser => DBUsers.removeUser(userId);
+const remove = async (userId: string): Promise<IUser> =>
+  await DBUsers.removeUser(userId);
 
 export const usersRepo = {
   getAll,

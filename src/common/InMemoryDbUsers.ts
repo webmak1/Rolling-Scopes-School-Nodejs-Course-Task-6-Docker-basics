@@ -6,34 +6,62 @@ import { IUser } from 'resources/users/user.model';
 
 const UsersData: IUser[] = [];
 
-const getAllUsers = (): IUser[] => {
-  const res = UsersData.slice(0);
-  if (!res) {
-    throw new Error('[App] Null Pointer Exception!');
-  }
-  return res;
+// GET ALL USERS
+const getAllUsers = (): Promise<IUser[]> => {
+  console.log('GET ALL USERS');
+  return new Promise((success, failure) => {
+    setTimeout(() => {
+      try {
+        const res = UsersData.slice(0);
+        console.log('GET ALL USERS SUCCESS');
+        success(res);
+      } catch (error) {
+        console.log('GET ALL USERS SUCCESS FAILURE');
+        failure(new Error('Error: Something went wrong'));
+      }
+    }, 2000);
+  });
 };
 
-const getUser = (userId: string): IUser => {
-  const allUsers = getAllUsers();
-  const res = allUsers.filter((el) => el?.id === userId)[0];
-  if (!res) {
-    throw new Error('[App] Null Pointer Exception!');
-  }
-  return res;
+// GET USER BY ID
+const getUser = (userId: string): Promise<IUser> => {
+  console.log(`GET USER BY ID...${userId}`);
+  return new Promise((success, failure) => {
+    setTimeout(() => {
+      try {
+        const allUsers = getAllUsers();
+        const user = allUsers.filter((el) => el?.id === userId)[0];
+        console.log('GET USER SUCCESS');
+        success(user);
+      } catch (error) {
+        console.log('GET USER FAILURE');
+        failure(new Error('Error: Something went wrong'));
+      }
+    }, 2000);
+  });
 };
 
-const createUser = (user: IUser): IUser => {
-  UsersData.push(user);
-  const res = getUser(user.id);
-  if (!res) {
-    throw new Error('[App] Null Pointer Exception!');
-  }
-  return res;
+// CREATE USER
+const createUser = (user: IUser): Promise<IUser> => {
+  console.log('CREATING USER...');
+  console.log(user);
+  return new Promise((success, failure) => {
+    setTimeout(() => {
+      try {
+        UsersData.push(user);
+        console.log('SUCCESS');
+        success(getUser(user.id));
+      } catch (error) {
+        console.log('FAILURE');
+        failure(new Error('Error: Something went wrong'));
+      }
+    }, 2000);
+  });
 };
 
-const removeUser = (userId: string): IUser => {
-  const deletedUser = getUser(userId);
+// REMOVE USER
+const removeUser = async (userId: string): Promise<IUser> => {
+  const deletedUser = await getUser(userId);
   remove(UsersData, (user) => user.id === userId);
   DBTasks.deleteUserFromTasks(userId);
   const res = deletedUser;
@@ -43,10 +71,11 @@ const removeUser = (userId: string): IUser => {
   return res;
 };
 
-const updateUser = (newUserData: IUser): IUser => {
+// UPDATE USER
+const updateUser = async (newUserData: IUser): Promise<IUser> => {
   removeUser(newUserData.id);
   createUser(newUserData);
-  const res = getUser(newUserData.id);
+  const res = await getUser(newUserData.id);
   if (res) {
     throw new Error('[App] Null Pointer Exception!');
   }
