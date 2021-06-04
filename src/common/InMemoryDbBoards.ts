@@ -65,8 +65,8 @@ const updateBoard = async (updateBoard: IBoard): Promise<IBoard> => {
   return new Promise((success, failure) => {
     setTimeout(async () => {
       try {
-        removeBoard(updateBoard.id);
-        createBoard(updateBoard);
+        await removeBoard(updateBoard.id);
+        await createBoard(updateBoard);
         const res = await getBoard(updateBoard.id);
         success(res);
       } catch (error) {
