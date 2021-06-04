@@ -66,17 +66,8 @@ const update = (
 };
 
 // DELETE TASK
-// const remove = (deletionId: string): ITask => {
-//   const task = tasksRepo.remove(deletionId);
-//   if (task) {
-//     return Task.toResponse(task);
-//   }
-//   throw new Error('[App] Null Pointer Exception!');
-// };
-
-// DELETE TASK
-const remove = async (deletionId: string): Promise<ITask> => {
-  const task = await tasksRepo.remove(deletionId);
+const remove = (deletionId: string): ITask => {
+  const task = tasksRepo.remove(deletionId);
   if (task) {
     return Task.toResponse(task);
   }
