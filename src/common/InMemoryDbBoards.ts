@@ -24,17 +24,19 @@ const getAllBoards = (): Promise<IBoard[]> => {
 // GET BOARD BY ID
 const getBoard = (boardId: string): Promise<IBoard> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        const allBoards = await getAllBoards();
-        const res = allBoards.filter((el) => el?.id === boardId)[0];
-        if (!res) {
-          throw new Error('[App] Null Pointer Exception!');
+    setTimeout(() => {
+      (async () => {
+        try {
+          const allBoards = await getAllBoards();
+          const res = allBoards.filter((el) => el?.id === boardId)[0];
+          if (!res) {
+            throw new Error('[App] Null Pointer Exception!');
+          }
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
         }
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+      })();
     }, DELAY);
   });
 };
@@ -56,15 +58,17 @@ const createBoard = (board: IBoard): Promise<IBoard> => {
 // UPDATE BOARD
 const updateBoard = async (updateBoard: IBoard): Promise<IBoard> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        await removeBoard(updateBoard.id);
-        await createBoard(updateBoard);
-        const res = await getBoard(updateBoard.id);
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+    setTimeout(() => {
+      (async () => {
+        try {
+          await removeBoard(updateBoard.id);
+          await createBoard(updateBoard);
+          const res = await getBoard(updateBoard.id);
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
+        }
+      })();
     }, DELAY);
   });
 };
@@ -72,16 +76,18 @@ const updateBoard = async (updateBoard: IBoard): Promise<IBoard> => {
 // REMOVE BOARD
 const removeBoard = async (boardId: string): Promise<IBoard> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        const deletedBoard = await getBoard(boardId);
-        remove(BoardsData, (board) => board.id === boardId);
-        DBTasks.removeTaskByBoardId(boardId);
-        const res = deletedBoard;
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+    setTimeout(() => {
+      (async () => {
+        try {
+          const deletedBoard = await getBoard(boardId);
+          remove(BoardsData, (board) => board.id === boardId);
+          DBTasks.removeTaskByBoardId(boardId);
+          const res = deletedBoard;
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
+        }
+      })();
     }, DELAY);
   });
 };

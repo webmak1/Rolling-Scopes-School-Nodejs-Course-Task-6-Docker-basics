@@ -23,19 +23,21 @@ const getAllTasks = (): Promise<ITask[]> => {
 // GET TASK BY BOARD ID AND TASK ID
 const getTask = (boardId: string, taskId: string): Promise<ITask> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        const allTasks = await getAllTasks();
-        const res = allTasks.filter(
-          (el) => el?.boardId === boardId && el?.id === taskId
-        )[0];
-        if (!res) {
-          throw new Error('[App] Null Pointer Exception!');
+    setTimeout(() => {
+      (async () => {
+        try {
+          const allTasks = await getAllTasks();
+          const res = allTasks.filter(
+            (el) => el?.boardId === boardId && el?.id === taskId
+          )[0];
+          if (!res) {
+            throw new Error('[App] Null Pointer Exception!');
+          }
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
         }
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+      })();
     }, DELAY);
   });
 };
@@ -43,17 +45,19 @@ const getTask = (boardId: string, taskId: string): Promise<ITask> => {
 // GET TASK BY ID
 const getTaskById = (taskId: string): Promise<ITask> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        const allTasks = await getAllTasks();
-        const res = allTasks.filter((el) => el.id === taskId)[0];
-        if (!res) {
-          throw new Error('[App] Null Pointer Exception!');
+    setTimeout(() => {
+      (async () => {
+        try {
+          const allTasks = await getAllTasks();
+          const res = allTasks.filter((el) => el.id === taskId)[0];
+          if (!res) {
+            throw new Error('[App] Null Pointer Exception!');
+          }
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
         }
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+      })();
     }, DELAY);
   });
 };
@@ -61,14 +65,16 @@ const getTaskById = (taskId: string): Promise<ITask> => {
 // CREATE TASK
 const createTask = (task: ITask): Promise<ITask> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        TasksData.push(task);
-        const res = await getTaskById(task.id);
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+    setTimeout(() => {
+      (async () => {
+        try {
+          TasksData.push(task);
+          const res = await getTaskById(task.id);
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
+        }
+      })();
     }, DELAY);
   });
 };
@@ -76,26 +82,28 @@ const createTask = (task: ITask): Promise<ITask> => {
 // UPDATE TASK
 const updateTask = async (updatedTask: ITask): Promise<ITask> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        console.log('----------------------');
-        console.log('UPDATE TASK');
-        console.log(updatedTask);
-        console.log('----------------------');
+    setTimeout(() => {
+      (async () => {
+        try {
+          console.log('----------------------');
+          console.log('UPDATE TASK');
+          console.log(updatedTask);
+          console.log('----------------------');
 
-        await removeTask(updatedTask.id);
-        await createTask(updatedTask);
-        const res = await getTaskById(updatedTask.id);
+          await removeTask(updatedTask.id);
+          await createTask(updatedTask);
+          const res = await getTaskById(updatedTask.id);
 
-        console.log('----------------------');
-        console.log('res');
-        console.log(res);
-        console.log('----------------------');
+          console.log('----------------------');
+          console.log('res');
+          console.log(res);
+          console.log('----------------------');
 
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
+        }
+      })();
     }, DELAY);
   });
 };
@@ -103,15 +111,17 @@ const updateTask = async (updatedTask: ITask): Promise<ITask> => {
 // REMOVE TASK
 const removeTask = async (taskId: string): Promise<ITask> => {
   return new Promise((success, failure) => {
-    setTimeout(async () => {
-      try {
-        const deletedTask = await getTaskById(taskId);
-        remove(TasksData, (task) => task.id === taskId);
-        const res = deletedTask;
-        success(res);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+    setTimeout(() => {
+      (async () => {
+        try {
+          const deletedTask = await getTaskById(taskId);
+          remove(TasksData, (task) => task.id === taskId);
+          const res = deletedTask;
+          success(res);
+        } catch (error) {
+          failure(new Error('Error: Something went wrong'));
+        }
+      })();
     }, DELAY);
   });
 };
