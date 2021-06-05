@@ -29,7 +29,9 @@ const getUser = (userId: string): Promise<IUser> => {
         const allUsers = await getAllUsers();
         const user = allUsers.filter((el) => el?.id === userId)[0];
         success(user);
-      } catch (error) {}
+      } catch (error) {
+        failure(new Error('Error: Something went wrong'));
+      }
     }, DELAY);
   });
 };
