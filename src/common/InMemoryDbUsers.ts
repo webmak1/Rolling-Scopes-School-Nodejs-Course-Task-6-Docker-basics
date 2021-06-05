@@ -23,16 +23,13 @@ const getAllUsers = (): Promise<IUser[]> => {
 
 // GET USER BY ID
 const getUser = (userId: string): Promise<IUser> => {
-  console.log(`GET USER BY ID...${userId}`);
   return new Promise((success, failure) => {
     setTimeout(async () => {
       try {
         const allUsers = await getAllUsers();
         const user = allUsers.filter((el) => el?.id === userId)[0];
         success(user);
-      } catch (error) {
-        failure(new Error('Error: Something went wrong'));
-      }
+      } catch (error) {}
     }, DELAY);
   });
 };
@@ -73,8 +70,8 @@ const removeUser = async (userId: string): Promise<IUser> => {
     setTimeout(async () => {
       try {
         const deletedUser = await getUser(userId);
-        remove(UsersData, (user) => user.id === userId);
-        DBTasks.deleteUserFromTasks(userId);
+        await remove(UsersData, (user) => user.id === userId);
+        await DBTasks.deleteUserFromTasks(userId);
         success(deletedUser);
       } catch (error) {
         failure(new Error('Error: Something went wrong'));

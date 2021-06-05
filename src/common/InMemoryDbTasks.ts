@@ -72,9 +72,20 @@ const updateTask = async (updatedTask: ITask): Promise<ITask> => {
   return new Promise((success, failure) => {
     setTimeout(async () => {
       try {
+        console.log('----------------------');
+        console.log('UPDATE TASK');
+        console.log(updatedTask);
+        console.log('----------------------');
+
         await removeTask(updatedTask.id);
         await createTask(updatedTask);
         const res = await getTaskById(updatedTask.id);
+
+        console.log('----------------------');
+        console.log('res');
+        console.log(res);
+        console.log('----------------------');
+
         success(res);
       } catch (error) {
         failure(new Error('Error: Something went wrong'));
@@ -104,10 +115,20 @@ const deleteUserFromTasks = (userId: string): Promise<string> => {
   return new Promise((success, failure) => {
     setTimeout(() => {
       try {
-        map(TasksData, (task) => {
+        map(TasksData, async (task) => {
           if (task.userId === userId) {
-            removeTask(task.id);
-            createTask({ ...task, userId: null });
+            console.log('---------------------------');
+            console.log('DELETE');
+            console.log(userId);
+            console.log('---------------------------');
+
+            await removeTask(task.id);
+            await createTask({ ...task, userId: null });
+
+            console.log('---------------------------');
+            console.log('getTaskById');
+            console.log(await getTaskById(task.id));
+            console.log('---------------------------');
           }
         });
         success('Delete User From Task is OK');
