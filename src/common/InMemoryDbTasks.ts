@@ -29,6 +29,9 @@ const getTask = (boardId: string, taskId: string): Promise<ITask> => {
         const res = allTasks.filter(
           (el) => el?.boardId === boardId && el?.id === taskId
         )[0];
+        if (!res) {
+          throw new Error('[App] Null Pointer Exception!');
+        }
         success(res);
       } catch (error) {
         failure(new Error('Error: Something went wrong'));
@@ -44,6 +47,9 @@ const getTaskById = (taskId: string): Promise<ITask> => {
       try {
         const allTasks = await getAllTasks();
         const res = allTasks.filter((el) => el.id === taskId)[0];
+        if (!res) {
+          throw new Error('[App] Null Pointer Exception!');
+        }
         success(res);
       } catch (error) {
         failure(new Error('Error: Something went wrong'));

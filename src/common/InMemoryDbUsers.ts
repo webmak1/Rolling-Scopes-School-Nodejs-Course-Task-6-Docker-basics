@@ -28,6 +28,9 @@ const getUser = (userId: string): Promise<IUser> => {
       try {
         const allUsers = await getAllUsers();
         const user = allUsers.filter((el) => el?.id === userId)[0];
+        if (!user) {
+          throw new Error('[App] Null Pointer Exception!');
+        }
         success(user);
       } catch (error) {
         failure(new Error('Error: Something went wrong'));

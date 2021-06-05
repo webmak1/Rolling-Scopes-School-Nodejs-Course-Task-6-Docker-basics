@@ -28,6 +28,9 @@ const getBoard = (boardId: string): Promise<IBoard> => {
       try {
         const allBoards = await getAllBoards();
         const res = allBoards.filter((el) => el?.id === boardId)[0];
+        if (!res) {
+          throw new Error('[App] Null Pointer Exception!');
+        }
         success(res);
       } catch (error) {
         failure(new Error('Error: Something went wrong'));
