@@ -72,7 +72,7 @@ const removeUser = async (userId: string): Promise<IUser> => {
     setTimeout(async () => {
       try {
         const deletedUser = await getUser(userId);
-        await remove(UsersData, (user) => user.id === userId);
+        remove(UsersData, (user) => user.id === userId);
         await DBTasks.deleteUserFromTasks(userId);
         success(deletedUser);
       } catch (error) {

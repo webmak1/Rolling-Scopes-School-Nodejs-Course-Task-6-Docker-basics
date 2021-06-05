@@ -100,7 +100,7 @@ const removeTask = async (taskId: string): Promise<ITask> => {
     setTimeout(async () => {
       try {
         const deletedTask = await getTaskById(taskId);
-        await remove(TasksData, (task) => task.id === taskId);
+        remove(TasksData, (task) => task.id === taskId);
         const res = deletedTask;
         success(res);
       } catch (error) {

@@ -3,6 +3,12 @@ import winston = require('winston');
 
 require('winston-daily-rotate-file');
 
+export interface TransformableInfo {
+  level: string;
+  message: string;
+  [key: string]: string;
+}
+
 const timezoned = () =>
   new Date().toLocaleString('en-US', {
     timeZone: 'Europe/Moscow',
@@ -47,7 +53,7 @@ const logger = winston.createLogger({
       format: timezoned,
     }),
     winston.format.printf(
-      (res) => `[${res.timestamp}] ${res.level}: ${res.message}`
+      (info: TransformableInfo) => `${info.level}: ${info.message}`
     )
   ),
   exitOnError: false,
