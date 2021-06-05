@@ -19,7 +19,7 @@ const options = {
   fileError: {
     level: 'error',
     filename: `${__dirname}/../../logs/error.log`,
-    handleExceptions: true,
+    handleExceptions: false,
     json: true,
     maxsize: 5242880, // 5MB
     maxFiles: 1,
@@ -27,7 +27,7 @@ const options = {
   fileInfo: {
     level: 'info',
     filename: `${__dirname}/../../logs/access.log`,
-    handleExceptions: true,
+    handleExceptions: false,
     json: true,
     maxsize: 5242880, // 5MB
     maxFiles: 1,
@@ -53,7 +53,8 @@ const logger = winston.createLogger({
       format: timezoned,
     }),
     winston.format.printf(
-      (info: TransformableInfo) => `${info.level}: ${info.message}`
+      (info: TransformableInfo) =>
+        `[${new Date().toUTCString()}] ${info.level}: ${info.message}`
     )
   ),
   exitOnError: false,
@@ -91,7 +92,7 @@ process.on('unhandledRejection', (error: Error): void => {
   logger.error('CRITICAL - UNHANDLED REJECTION!');
   logger.error('----------------------------');
   logger.error(error.stack);
-  process.exit(1);
+  // process.exit(1);
 });
 
 process.on('uncaughtException', (error: Error): void => {
@@ -99,5 +100,5 @@ process.on('uncaughtException', (error: Error): void => {
   logger.error('CRITICAL - UNCOUGHT EXCEPTION!');
   logger.error('----------------------------');
   logger.error(error.stack);
-  process.exit(1);
+  // process.exit(1);
 });

@@ -51,7 +51,7 @@ https://shell.cloud.google.com/
 Реализовано в файле app.js
 
 ```js
-app.use((req, res, next) => {
+app.use((req: Request, _res: Response, next: NextFunction) => {
   writeAccessLog(req);
   next();
 });
@@ -64,12 +64,12 @@ app.use((req, res, next) => {
 Реализовано в файле app.js
 
 ```js
-app.use((err, req, res, next) => {
-  writeErrorLog(err, req, res);
-  return res
-    .status(INTERNAL_SERVER_ERROR)
-    .send(getStatusText(INTERNAL_SERVER_ERROR));
-  next();
+app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
+  writeErrorLog(err, req);
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+    error: err.name,
+    message: err.message,
+  });
 });
 ```
 
@@ -132,18 +132,20 @@ process.on('unhandledRejection', (error) => {
 ```
 $ curl \
     --header "Content-Type: application/json" \
-    --request GET http://localhost:4000/users?user=admin&pass=admin
+    --request GET 'http://localhost:4000/users?user=admin&pass=admin'
 ```
+
+<br/>
 
 **результат:**
 
 ```
-[6/5/2021, 7:36:36 AM] info: ----------------------------
-[6/5/2021, 7:36:36 AM] info: method = "GET"
-[6/5/2021, 7:36:36 AM] info: url = "/users?user=admin"
-[6/5/2021, 7:36:36 AM] info: body = {}
-[6/5/2021, 7:36:36 AM] info: query = {"user":"admin"}
-[6/5/2021, 7:36:36 AM] info: ----------------------------
+[Sat, 05 Jun 2021 22:12:27 GMT] info: ----------------------------
+[Sat, 05 Jun 2021 22:12:27 GMT] info: method = "GET"
+[Sat, 05 Jun 2021 22:12:27 GMT] info: url = "/users?user=admin&pass=admin"
+[Sat, 05 Jun 2021 22:12:27 GMT] info: body = {}
+[Sat, 05 Jun 2021 22:12:27 GMT] info: query = {"user":"admin","pass":"admin"}
+[Sat, 05 Jun 2021 22:12:27 GMT] info: ----------------------------
 ```
 
 <br/>
@@ -174,16 +176,16 @@ $ curl \
 **Результат в error.log**
 
 ```
-[6/5/2021, 7:37:19 AM] error: ----------------------------
-[6/5/2021, 7:37:19 AM] error: error = {"name":"Not Found"}
-[6/5/2021, 7:37:19 AM] error: method = "GET"
-[6/5/2021, 7:37:19 AM] error: statusCode = "Not Found"
-[6/5/2021, 7:37:19 AM] error: statusCode = "Can't find /user on this server!"
-[6/5/2021, 7:37:19 AM] error: params = {}
-[6/5/2021, 7:37:19 AM] error: url = "/user"
-[6/5/2021, 7:37:19 AM] error: body = {}
-[6/5/2021, 7:37:19 AM] error: query = {}
-[6/5/2021, 7:37:19 AM] error: stack = "Not Found: Can't find /user on this server!\n    at /home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/src/app.ts:38:15\n    at Layer.handle [as handle_request] (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:137:13)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at Route.dispatch (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:112:3)"
-[6/5/2021, 7:37:19 AM] error: ----------------------------
+[Sat, 05 Jun 2021 22:11:31 GMT] error: ----------------------------
+[Sat, 05 Jun 2021 22:11:31 GMT] error: error = {"name":"Not Found"}
+[Sat, 05 Jun 2021 22:11:31 GMT] error: method = "GET"
+[Sat, 05 Jun 2021 22:11:31 GMT] error: statusCode = "Not Found"
+[Sat, 05 Jun 2021 22:11:31 GMT] error: statusCode = "Can't find /user on this server!"
+[Sat, 05 Jun 2021 22:11:31 GMT] error: params = {}
+[Sat, 05 Jun 2021 22:11:31 GMT] error: url = "/user"
+[Sat, 05 Jun 2021 22:11:31 GMT] error: body = {}
+[Sat, 05 Jun 2021 22:11:31 GMT] error: query = {}
+[Sat, 05 Jun 2021 22:11:31 GMT] error: stack = "Not Found: Can't find /user on this server!\n    at /home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/src/app.ts:38:15\n    at Layer.handle [as handle_request] (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:137:13)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at next (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:131:14)\n    at Route.dispatch (/home/marley/projects/dev/rsschool/Rolling-Scopes-School-Nodejs-Course-Task-5-Logging-Error-Handling/node_modules/express/lib/router/route.js:112:3)"
+[Sat, 05 Jun 2021 22:11:31 GMT] error: ----------------------------
 
 ```
