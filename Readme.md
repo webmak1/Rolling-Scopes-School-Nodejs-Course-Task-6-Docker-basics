@@ -11,6 +11,12 @@ https://shell.cloud.google.com/
 
 ### Результаты тестов
 
+$ docker compose up
+
+
+http://localhost:4000/doc/
+
+
 <br/>
 
 ![Application](/img/pic-01.png?raw=true)
