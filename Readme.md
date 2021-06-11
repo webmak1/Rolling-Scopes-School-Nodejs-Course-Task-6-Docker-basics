@@ -13,8 +13,21 @@ https://shell.cloud.google.com/
 
 $ docker compose up
 
-
 http://localhost:4000/doc/
+
+
+$ docker network ls
+
+
+$ docker exec -it 59407904262f sh
+
+psql -h postgres -p 5432 -d postgres -U postgres -W
+
+
+postgres=# \l
+
+
+
 
 
 <br/>

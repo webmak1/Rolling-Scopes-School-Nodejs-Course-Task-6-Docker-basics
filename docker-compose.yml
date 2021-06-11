@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: DockerfileApp.dockerfile
+      network: rs-network
+    restart: always
+    container_name: app
+    hostname: app
     ports:
       - ${PORT}:${PORT}
     depends_on:
@@ -18,7 +22,22 @@ services:
     build:
       context: .
       dockerfile: DockerfileDB.dockerfile
+      network: rs-network
+    restart: always
+    container_name: postgres
+    hostname: postgres
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
     volumes:
-      - /app/node_modules
-      - .:/app
-    command: ["npm", "run", "test"]
+      - ./PGDATA:/var/lib/postgresql/data
+
+
+networks:
+  default:
+    driver: bridge
+    name: rs-network

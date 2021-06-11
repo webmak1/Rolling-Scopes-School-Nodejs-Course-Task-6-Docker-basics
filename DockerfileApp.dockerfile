@@ -1,8 +1,9 @@
 FROM node:lts-alpine3.12
 
+RUN apk --update add postgresql-client
+
 WORKDIR /app
 COPY package.json ./
-# RUN npm install --only=prod --silent
 
 RUN npm install --silent
 COPY ./ ./
