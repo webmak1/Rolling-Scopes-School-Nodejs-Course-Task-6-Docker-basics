@@ -9,9 +9,12 @@ https://shell.cloud.google.com/
 
 <br/>
 
-### Результаты тестов
+### Запуск
 
-$ docker compose up
+Запушить контейнер.
+
+
+$ docker-compose up --build
 
 http://localhost:4000/doc/
 
@@ -19,15 +22,39 @@ http://localhost:4000/doc/
 $ docker network ls
 
 
-$ docker exec -it 59407904262f sh
+$ docker exec -it app sh
 
-psql -h postgres -p 5432 -d postgres -U postgres -W
+psql -h postgres -p 5432 -d db -U user -W
 
 
 postgres=# \l
 
 
+$ docker network inspect rs-network -f "{{json .Containers }}" \
+| python -m json.tool
 
+
+```
+{
+    "15e00cc6e52c0f86742d77540ff637e995281dc0ee30d597d4d117e7ec163527": {
+        "EndpointID": "51475a2c37bd2ebf27b1019f86e2be88227023b1d1ea7adbf49c9690c2e046d9",
+        "IPv4Address": "172.22.0.2/16",
+        "IPv6Address": "",
+        "MacAddress": "02:42:ac:16:00:02",
+        "Name": "postgres"
+    },
+    "ef0aecae430c7ae6a3794d8c2af5ed1e08ca35e21aa84456b872585cae6fd524": {
+        "EndpointID": "aab33f1d5e6b0038d78d2f3e92a54d2f408255d214196b9fb26f8399b55c7d4e",
+        "IPv4Address": "172.22.0.3/16",
+        "IPv6Address": "",
+        "MacAddress": "02:42:ac:16:00:03",
+        "Name": "app"
+    }
+}
+```
+
+
+Добавить NYX
 
 
 <br/>
