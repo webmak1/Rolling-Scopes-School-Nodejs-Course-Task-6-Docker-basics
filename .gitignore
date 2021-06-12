@@ -1,7 +1,4 @@
 node_modules
-test
-doc
 build/
 dist/
-package-lock.json
 tsconfig.tsbuildinfo
