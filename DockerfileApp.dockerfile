@@ -6,5 +6,5 @@ WORKDIR /app
 COPY package.json ./
 
 RUN npm install --silent
-COPY ./ ./
+# COPY ./ ./
 CMD ["npm", "run", "dev"]
