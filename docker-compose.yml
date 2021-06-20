@@ -1,0 +1,44 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: DockerfileApp.dockerfile
+      network: rsschool-network
+    restart: always
+    container_name: rsschool-app
+    hostname: rsschool-app
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - postgres
+    volumes:
+      - /app/node_modules
+      - .:/app
+    environment:
+      - PORT=${PORT}
+    image: webmakaka/rsschool-app
+
+  postgres:
+    build:
+      context: .
+      dockerfile: DockerfileDB.dockerfile
+      network: rsschool-network
+    restart: always
+    container_name: rsschool-postgres
+    hostname: rsschool-postgres
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+    volumes:
+      - ./PGDATA:/var/lib/postgresql/data
+    image: webmakaka/rsschool-postgres
+
+networks:
+  default:
+    driver: bridge
+    name: rsschool-network

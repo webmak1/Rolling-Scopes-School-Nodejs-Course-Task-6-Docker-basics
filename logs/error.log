@@ -1,0 +1,72 @@
+[Fri, 11 Jun 2021 13:43:41 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:41 GMT] error: error = {"name":"Not Found"}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: method = "GET"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: statusCode = "Not Found"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: statusCode = "Can't find / on this server!"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: params = {}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: url = "/"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: body = {}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: query = {}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: stack = "Not Found: Can't find / on this server!\n    at /app/src/app.ts:38:15\n    at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js:95:5)\n    at next (/app/node_modules/express/lib/router/route.js:137:13)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at Route.dispatch (/app/node_modules/express/lib/router/route.js:112:3)"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:41 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:41 GMT] error: error = {"name":"Not Found"}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: method = "GET"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: statusCode = "Not Found"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: statusCode = "Can't find /favicon.ico on this server!"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: params = {}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: url = "/favicon.ico"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: body = {}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: query = {}
+[Fri, 11 Jun 2021 13:43:41 GMT] error: stack = "Not Found: Can't find /favicon.ico on this server!\n    at /app/src/app.ts:38:15\n    at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js:95:5)\n    at next (/app/node_modules/express/lib/router/route.js:137:13)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at Route.dispatch (/app/node_modules/express/lib/router/route.js:112:3)"
+[Fri, 11 Jun 2021 13:43:41 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:47 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:47 GMT] error: error = {"name":"Not Found"}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: method = "GET"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: statusCode = "Not Found"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: statusCode = "Can't find /api/ on this server!"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: params = {}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: url = "/api/"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: body = {}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: query = {}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: stack = "Not Found: Can't find /api/ on this server!\n    at /app/src/app.ts:38:15\n    at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js:95:5)\n    at next (/app/node_modules/express/lib/router/route.js:137:13)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at Route.dispatch (/app/node_modules/express/lib/router/route.js:112:3)"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:47 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:43:47 GMT] error: error = {"name":"Not Found"}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: method = "GET"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: statusCode = "Not Found"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: statusCode = "Can't find /favicon.ico on this server!"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: params = {}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: url = "/favicon.ico"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: body = {}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: query = {}
+[Fri, 11 Jun 2021 13:43:47 GMT] error: stack = "Not Found: Can't find /favicon.ico on this server!\n    at /app/src/app.ts:38:15\n    at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js:95:5)\n    at next (/app/node_modules/express/lib/router/route.js:137:13)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at next (/app/node_modules/express/lib/router/route.js:131:14)\n    at Route.dispatch (/app/node_modules/express/lib/router/route.js:112:3)"
+[Fri, 11 Jun 2021 13:43:47 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:45:44 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:45:44 GMT] error: CRITICAL - UNCOUGHT EXCEPTION!
+[Fri, 11 Jun 2021 13:45:44 GMT] error: ----------------------------
+[Fri, 11 Jun 2021 13:45:44 GMT] error: Error: Oops! uncaughtException Happened!
+    at Object.<anonymous> (/app/src/app.ts:27:7)
+    at Module._compile (internal/modules/cjs/loader.js:1068:30)
+    at Module.m._compile (/app/node_modules/ts-node/src/index.ts:1295:23)
+    at Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+    at Object.require.extensions.<computed> [as .ts] (/app/node_modules/ts-node/src/index.ts:1298:12)
+    at Module.load (internal/modules/cjs/loader.js:933:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+    at Module.require (internal/modules/cjs/loader.js:957:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (/app/src/server.ts:1:1)
+[Sat, 12 Jun 2021 03:49:07 GMT] error: ----------------------------
+[Sat, 12 Jun 2021 03:49:07 GMT] error: CRITICAL - UNCOUGHT EXCEPTION!
+[Sat, 12 Jun 2021 03:49:07 GMT] error: ----------------------------
+[Sat, 12 Jun 2021 03:49:07 GMT] error: Error: Oops! uncaughtException Happened!
+    at Object.<anonymous> (/app/src/app.ts:27:7)
+    at Module._compile (internal/modules/cjs/loader.js:1068:30)
+    at Module.m._compile (/app/node_modules/ts-node/src/index.ts:1295:23)
+    at Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+    at Object.require.extensions.<computed> [as .ts] (/app/node_modules/ts-node/src/index.ts:1298:12)
+    at Module.load (internal/modules/cjs/loader.js:933:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+    at Module.require (internal/modules/cjs/loader.js:957:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (/app/src/server.ts:1:1)
